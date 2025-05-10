@@ -4,6 +4,7 @@
         "start": "vite"
     },
     "dependencies": {
+        "bootstrap": "^5.3.6",
         "socket.io-client": "^4.8.1",
         "vite": "^6.3.5"
     }

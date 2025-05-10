@@ -1,0 +1,39 @@
+@import 'bootstrap/dist/css/bootstrap';
+
+.point-card:hover {
+    background-color: var(--bs-indigo);
+    cursor: pointer;
+}
+
+.bar-chart {
+    display: flex;
+    align-items: flex-end;
+    border: 2px solid white;
+    border-radius: 5px;
+    justify-content: center;
+    gap: 20px;
+    height: 200px;
+}
+
+    .bar-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+    }
+
+.bar {
+    width: 40px;
+    border-radius: 5px 5px 0px 0px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    color: white;
+    font-size: 0.9rem;
+    transition: height 0.3s ease-in-out;
+}
+
+.bar-label {
+    text-align: center;
+    margin-top: 10px;
+}
