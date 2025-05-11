@@ -32,13 +32,17 @@
 
                 <!-- Header -->
                 <div class="d-flex justify-content-between mt-3">
-                    <button id="exit" class="btn btn-outline-danger btn-sm">
-                        <i class="fa-solid fa-arrow-left"></i>
-                    </button>
                     <div>
-                        <span id="title">Room </span>
+                        <button id="exit" class="btn btn-outline-danger btn-sm">
+                            <i class="fa-solid fa-arrow-left"></i>
+                            Exit
+                        </button>
+                    </div>
+                    <div>
                         <button id="copy-link" class="btn btn-outline-light btn-sm">
-                            <i class="fa-solid fa-copy"></i>
+                        <span id="title"></span>
+                            <i id="copy-icon" class="ms-1 fa-solid fa-copy"></i>
+                            <i id="copy-done-icon" class="d-none ms-1 fa-solid fa-check"></i>
                         </button>
                     </div>
                 </div>

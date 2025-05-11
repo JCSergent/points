@@ -172,8 +172,21 @@ document.getElementById('change-name').addEventListener('click', () => {
     });
 });
 
-document.getElementById('copy-link').addEventListener('click', () => {
+const copyLink = document.getElementById('copy-link');
+copyLink.addEventListener('click', () => {
     navigator.clipboard.writeText(location.href)
+    copyLink.classList.remove('btn-outline-light');
+    copyLink.classList.add('btn-outline-success');
+    document.getElementById('copy-icon').classList.add('d-none');
+    document.getElementById('copy-done-icon').classList.remove('d-none');
+     
+    setTimeout(() => {
+        copyLink.classList.remove('btn-outline-success');
+        copyLink.classList.add('btn-outline-light');
+        document.getElementById('copy-done-icon').classList.add('d-none');
+        document.getElementById('copy-icon').classList.remove('d-none');
+    }, 1000);
+
 });
 
 document.getElementById('exit').addEventListener('click', () => {
