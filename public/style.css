@@ -8,19 +8,11 @@
 .bar-chart {
     display: flex;
     align-items: flex-end;
-    border: 2px solid white;
-    border-radius: 5px;
     justify-content: center;
-    gap: 20px;
     height: 200px;
+    gap: 20px;
+    border-bottom: 2px solid white;
 }
-
-    .bar-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      height: 100%;
-    }
 
 .bar {
     width: 40px;
@@ -30,10 +22,4 @@
     justify-content: center;
     color: white;
     font-size: 0.9rem;
-    transition: height 0.3s ease-in-out;
-}
-
-.bar-label {
-    text-align: center;
-    margin-top: 10px;
 }

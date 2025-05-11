@@ -63,18 +63,23 @@ function joinRoom(room) {
 // Game Room
 //
 
+const choices = ['1', '2', '3', '5', '8', '?'];
+const cards = document.getElementsByClassName('point-card');
+
 var roomId = '';
 
 function renderRoom(room) {
-    document.getElementById("title").textContent = 'Room ' + room.id;
+    document.getElementById("title").textContent = 'Room #' + room.id;
+
+    let scores = new Map();
+    choices.forEach((c) => scores.set(c, 0))
 
     let playerNodes = '';
-    let scores = new Map();
     for (const playerEntry of Object.entries(room.players)) {
         playerNodes += createPlayerNode(playerEntry[0], playerEntry[1], room.state);
+
         if (playerEntry[1].card != '') {
-            const tally = scores.get(playerEntry[1].card) ?? 0;
-            scores.set(playerEntry[1].card, tally + 1);
+            scores.set(playerEntry[1].card, scores.get(playerEntry[1].card) + 1);
         }
     }
     document.getElementById('players').innerHTML = playerNodes;
@@ -98,7 +103,8 @@ function renderRoom(room) {
         for (var score of scores.entries()) {
             scoreNodes += createScoreNode(score[0], score[1], totalTally);
         }
-        document.getElementById('stats').innerHTML = scoreNodes;
+        document.getElementById('bar-chart').innerHTML = scoreNodes;
+
     } else {
         document.getElementById('reset').classList.add('d-none');
         document.getElementById('stats').classList.add('d-none');
@@ -113,7 +119,7 @@ function createPlayerNode(id, player, gameState) {
 
     return `<div class="col text-center">
         <div class="d-flex flex-column justify-content-center">
-            <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-center">         
                 <p class="border border-primary border-3 rounded p-3 ${hasSelected ? 'bg-primary' : ''}">
                     ${isHidden ? '?' : player.card == '' ? '-' : player.card }
                 </p>
@@ -128,25 +134,14 @@ function createPlayerNode(id, player, gameState) {
 }
 
 function createScoreNode(card, tally, totalTally) {
-    return `
-    <div class="bar-wrapper">
+    return `<div class="d-flex flex-column-reverse align-items-center h-100">
       <div class="bar text-bg-success" style="height: ${(tally / totalTally) * 100}%;">
-        ${tally}
+        ${tally == 0 ? '' : tally}
         </div>
-      <div class="bar-label">${card}</div>
-    </div>
-`;
-    // return `<div class="mb-3">
-    //         <label class="fs-2">${card}</label>
-    //         <div class="progress" style="height: 24px">
-    //             <div class="progress-bar text-bg-success" style="width: ${(tally / totalTally) * 100}%">
-    //                 ${tally}
-    //             </div>
-    //         </div>
-    //     </div>`;
+      <div class="text-center">${card}</div>
+    </div>`;
 }
 
-const cards = document.getElementsByClassName('point-card');
 
 for (const card of cards) {
     card.addEventListener('click', () => {
@@ -179,6 +174,12 @@ document.getElementById('change-name').addEventListener('click', () => {
 
 document.getElementById('copy-link').addEventListener('click', () => {
     navigator.clipboard.writeText(location.href)
-    
+});
 
+document.getElementById('exit').addEventListener('click', () => {
+    document.getElementById("game-room").classList.add('d-none');
+    document.getElementById("landing-page").classList.remove('d-none');
+    window.history.pushState(null, '', '/');
+    socket.emit("PLAYER_LEAVE_REQUEST", roomId, playerId, (res) => {console.log(res)});
+    roomId = '';
 });

@@ -13,7 +13,7 @@
             <!-- Landing Page -->
             <div id="landing-page">
                 <div class="d-flex justify-content-center mt-3">
-                    <h1>Points</h1>
+                    <!-- <h1>Points Picker</h1> -->
                 </div>
                 <div class="d-grid gap-2 col-12 mx-auto constrain">
                     <label for="room-code" class="fw-bold mt-4">ROOM CODE</label>
@@ -29,19 +29,33 @@
             <!-- Game Room -->
             <div id="game-room" class="d-none">
 
-                <div class="d-flex justify-content-center mt-3">
-                    <h1 id="title">Room </h1>
-                    <button id="copy-link" class="ms-2 mb-4 btn btn-outline-light btn-sm">
-                        <i class="fa-solid fa-copy"></i>
+
+                <!-- Header -->
+                <div class="d-flex justify-content-between mt-3">
+                    <button id="exit" class="btn btn-outline-danger btn-sm">
+                        <i class="fa-solid fa-arrow-left"></i>
                     </button>
+                    <div>
+                        <span id="title">Room </span>
+                        <button id="copy-link" class="btn btn-outline-light btn-sm">
+                            <i class="fa-solid fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2 col-6 mx-auto constrain">
+                    <button id="reveal" class="btn btn-primary btn-lg my-4">Reveal</button>
+                    <button id="reset" class="d-none btn btn-primary btn-lg my-4">Reset</button>
                 </div>
 
                 <!-- Stats -->
-                <!-- <h2 class="d-flex justify-content-center"> Results<h2> -->
-                <div id="stats" class="w-50 mb-5 bar-chart mx-auto"></div>
+                <div id="stats" class="">
+                    <h2 class="d-flex justify-content-center"> Results<h2>
+                    <div id="bar-chart" class="w-75 bar-chart mx-auto"></div>
+                </div>
 
                 <!-- Players -->
-                <div id="players" class="row"></div>
+                <div id="players" class="row mt-5 w-75 mx-auto"></div>
 
                 <!-- Cards -->
                 <div class="row w-50 mx-auto mt-5 text-center">
@@ -68,10 +82,6 @@
                     </div>
                 </div>
 
-                <div class="d-grid gap-2 col-6 mx-auto constrain">
-                    <button id="reveal" class="btn btn-primary btn-lg my-4">Reveal</button>
-                    <button id="reset" class="d-none btn btn-outline-primary btn-lg my-4">Reset</button>
-                </div>
             </div>
 
             <!-- Change Name Modal -->
