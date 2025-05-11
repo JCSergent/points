@@ -4,18 +4,18 @@ import { io } from "socket.io-client";
 const socket = io("http://localhost:8524");
 
 // Load PlayerId
-var playerId = sessionStorage.getItem('x-unique-id');
+var playerId = localStorage.getItem('x-unique-id');
 if (playerId == null) {
     playerId = crypto.randomUUID();
-    sessionStorage.setItem('x-unique-id', playerId);
+    localStorage.setItem('x-unique-id', playerId);
 }
 
 // Load PlayerName
-var playerName = sessionStorage.getItem('x-name');
+var playerName = localStorage.getItem('x-name');
 console.log(playerName);
 if (playerName == null) {
     playerName = '???';
-    sessionStorage.setItem('x-name', playerName);
+    localStorage.setItem('x-name', playerName);
 }
 
 // Load Room from Path
@@ -167,7 +167,7 @@ document.getElementById('change-name').addEventListener('click', () => {
     playerName = document.getElementById('name-input').value;
     socket.emit("PLAYER_UPDATE_REQUEST", roomId, playerId, { name: playerName }, (res) => {
         document.getElementById('name-input').value = '';
-        sessionStorage.setItem('x-name', playerName);
+        localStorage.setItem('x-name', playerName);
         renderRoom(res);
     });
 });
