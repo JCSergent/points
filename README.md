@@ -1,9 +1,8 @@
 # Points
 
-A point picker that isn't trying to sell you premium version or ask for your email.
+A point picker that doesn't ask for a Pro Version upgrade or require your email.
 
-
-Created using Socket.io, Vite, & Bootstrap.
+Created using Socket.io, Bootstrap. Built with Vite.
 
 This works with a Node.js backend which can be found here: [Points Server](https://github.com/JCSergent/points-server)
 
