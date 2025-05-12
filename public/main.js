@@ -1,7 +1,7 @@
 import { Modal } from "bootstrap";
 import { io } from "socket.io-client";
 
-const socket = io("http://localhost:5000");
+const socket = io(process.env.SERVER_URL || "http://localhost:5000");
 
 // Load PlayerId
 var playerId = localStorage.getItem('x-unique-id');

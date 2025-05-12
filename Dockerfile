@@ -12,5 +12,9 @@ RUN npm run --quiet build
 
 
 ## STEP 2: Create Image ##
-FROM nginx:latest
+FROM nginxinc/nginx-unprivileged
+
+COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=builder /app/dist /usr/share/nginx/html
+
+CMD ["nginx", "-g", "daemon off;"]
