@@ -1,7 +1,7 @@
 import { Modal } from "bootstrap";
 import { io } from "socket.io-client";
 
-const socket = io(process.env.SERVER_URL || "http://localhost:5000");
+const socket = io("http://localhost:5000");
 
 // Load PlayerId
 var playerId = localStorage.getItem('x-unique-id');
@@ -12,7 +12,6 @@ if (playerId == null) {
 
 // Load PlayerName
 var playerName = localStorage.getItem('x-name');
-console.log(playerName);
 if (playerName == null) {
     playerName = '???';
     localStorage.setItem('x-name', playerName);
@@ -120,8 +119,8 @@ function createPlayerNode(id, player, gameState) {
     return `<div class="col text-center">
         <div class="d-flex flex-column justify-content-center">
             <div class="d-flex justify-content-center">         
-                <p class="border border-primary border-3 rounded p-3 ${hasSelected ? 'bg-primary' : ''}">
-                    ${isHidden ? '?' : player.card == '' ? '-' : player.card }
+                <p class="${isHidden ? hasSelected ? 'border-primary bg-primary text-primary' : 'bg-dark text-dark' : player.card == '' ? 'text-dark' : 'border-primary'}  border border-3 rounded p-3">
+                    ${isHidden ? '-' : player.card == '' ? '-' : player.card }
                 </p>
             </div>
             <i class="fa-solid fa-user fs-1 text-light"></i>
@@ -132,6 +131,10 @@ function createPlayerNode(id, player, gameState) {
         </div>
     </div>`;
 }
+
+                // <p class="border border-primary border-3 rounded p-3 ${hasSelected ? 'bg-primary' : ''} ">
+                //     ${isHidden ? '?' : player.card == '' ? '-' : player.card }
+                // </p>
 
 function createScoreNode(card, tally, totalTally) {
     return `<div class="d-flex flex-column-reverse align-items-center h-100">
