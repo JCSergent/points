@@ -5,6 +5,12 @@
     cursor: pointer;
 }
 
+.clear-card:hover {
+    background-color: var(--bs-danger);
+    color: var(--bs-light);
+    cursor: pointer;
+}
+
 .bar-chart {
     display: flex;
     align-items: flex-end;
