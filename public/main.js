@@ -94,18 +94,19 @@ function renderRoom(room) {
 
 
     if (room.state == 'reveal') {
-        let scoreNodes = '';
-        let totalScore = 0;
         const totalTally = scores.values().reduce((a,b) => a + b);
-        for (var score of scores.entries()) {
-            if (!isNaN(score[0])) {
-                totalScore += parseInt(score[0]) * score[1];
-            }
+        const scoreNodes = scores.entries().reduce((a, score) => {
+            return a + createScoreNode(score[0], score[1], totalTally)
+        }, '');
+        
 
-            scoreNodes += createScoreNode(score[0], score[1], totalTally);
-        }
+        const numberedCards = [...scores].filter(score => !isNaN(score[0]));
+        const numberedTally = numberedCards.reduce((a,b) => a + b[1], 0);
+        let totalScore = numberedCards.reduce((a, card) => {
+            return a + (parseInt(card[0]) * card[1]);
+        }, 0);
 
-        totalScore = totalScore / totalTally;
+        totalScore = totalScore / numberedTally;
         if (isNaN(totalScore) || totalScore == 0) {
             document.getElementById('results-title').innerHTML = 'No Results';
         } else {
